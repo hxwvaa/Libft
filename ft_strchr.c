@@ -1,22 +1,17 @@
 #include <stdio.h>
 
-//NOT CORRECT
-
-char *strchr(const char *str, int c)
+char	*strchr(const char *str, int c)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	while (str[i])
+	while (str[i] != '\0')
 	{
 		if (str[i] == c)
-			return ((char *)str[i]);
+			return ((char *)str + i);
 		i++;
 	}
-	return (0);
-}
-
-int main(void)
-{
-	printf("%s\n", strchr("hello", 'l'));
+	if (c == '\0')
+		return ((char *)str + i);
+	return (NULL);
 }
