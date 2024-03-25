@@ -1,6 +1,6 @@
-#include <stdio.h>
+#include "libft.h"
 
-char	*strchr(const char *str, int c)
+char	*ft_strchr(const char *str, int c)
 {
 	int	i;
 
