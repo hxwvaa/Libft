@@ -1,11 +1,11 @@
 #include "libft.h"
 
-char *ft_strrchr(const char *s, int c)
+char	*ft_strrchr(const char *s, int c)
 {
-	int     i;
-    char    *temp;
+	int		i;
+	char	*temp;
 
-    temp = NULL;
+	temp = NULL;
 	i = 0;
 	while (s[i] != '\0')
 	{
