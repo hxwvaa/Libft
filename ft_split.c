@@ -40,6 +40,7 @@ void	copystr(char const *s, char c, char **str_arr, size_t i)
 	while (*str_arr[count] != '\0')
 		count++;
 	free(str_arr[count]);
+	//CHECK IF ALLOCATION FAILS
 	str_arr[count] = malloc(sizeof(char) * (j + 1));
 	j = 0;
 	while (s[k] != c)
@@ -90,4 +91,5 @@ int	main(void)
 		printf("%s\n", str[i]);
 		i++;
 	}
+	free(str);
 }
