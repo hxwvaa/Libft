@@ -1,7 +1,7 @@
 #include "libft.h"
 #include <stdio.h>
 
-size_t	count_c(char const *s, char c)
+size_t	count_words(char const *s, char c)
 {
 	size_t	i;
 	size_t	count;
@@ -20,69 +20,72 @@ size_t	count_c(char const *s, char c)
 			count++;
 		i++;
 	}
-	return (count);
+	return (count + 1);
+}
+
+void	copystr(char const *s, char c, char **str_arr, size_t i)
+{
+	size_t	count;
+	size_t	j;
+	size_t	k;
+
+	count = 0;
+	k = i;
+	while (s[i] != c)
+	{
+		i++;
+		j++;
+	}
+	while (*str_arr[count] != '\0')
+		count++;
+	free(str_arr[count]);
+	str_arr[count] = malloc(sizeof(char) * (j + 1));
+	j = 0;
+	while (s[k] != c)
+	{
+		str_arr[count][j] = s[k];
+		j++;
+		k++;
+	}
+	str_arr[count][j] = '\0';
 }
 
 char	**ft_split(char const *s, char c)
 {
 	char	**str_arr;
-	char	*temp;
-	size_t	count;
 	size_t	i;
-	size_t	j;
-	size_t	k;
 
-	str_arr = malloc(sizeof(char *) * (count_c(s, c) + 1));
+	i = 0;
+	str_arr = malloc(sizeof(char *) * count_words(s, c));
 	if (str_arr == NULL)
 		return (NULL);
-	count = 0;
+	while (i <= count_words(s, c))
+	{
+		str_arr[i] = malloc(1 * sizeof(char));
+		if (str_arr[i] == NULL)
+			return (NULL);
+		ft_bzero(str_arr[i], 1);
+		i++;
+	}
+	i = 0;
 	while (s[i])
 	{
 		if (s[i] != c)
-		{
-			j = i;
-			while (s[i] != c)
-			{
-				i++;
-				k++;
-			}
-			i = j;
-			j = 0;
-			temp = malloc(sizeof(char) * (k + 1));
-			if (temp == NULL)
-				return (NULL);
-			while (s[i] != c)
-			{
-				temp[j] = s[i];
-				if (s[i + 1] == c)
-				{
-					str_arr[count] = malloc((ft_strlen(temp) + 1)
-							* sizeof(char));
-					if (str_arr[count] == NULL)
-						return (NULL);
-					ft_strlcpy(str_arr[count], temp, ft_strlen(temp) + 1);
-					count++;
-					k = 0;
-					break ;
-				}
-				i++;
-				j++;
-			}
-		}
+			copystr(s, c, str_arr, i);
 		i++;
 	}
 	return (str_arr);
 }
-// int	main(void)
-// {
-// 	char *s = "ffhelrrloffhirrrifhorrwfyesrrf";
-// 	char c = 'f';
+int	main(void)
+{
+	char *s = "ffhelrrloffhirrrifhorrwfyesrrf";
+	char c = 'f';
 
-// 	int i = 0;
-// 	char **str = ft_split(s, c);
-// 	while (i <= 3)
-// 	{
-// 		printf("%s\n", str[i]);
-// 		i++;
-// 	}
-// }
+	int i = 0;
+	char **str = ft_split(s, c);
+	while (i <= 3)
+	{
+		printf("%s\n", str[i]);
+		i++;
+	}
+}
