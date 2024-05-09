@@ -28,7 +28,8 @@ void	copystr(char const *s, char c, char **str_arr, size_t i)
 	size_t	count;
 	size_t	j;
 	size_t	k;
-
+ 
+ //make a function to get the word length
 	count = 0;
 	j = 0;
 	k = i;
