@@ -30,6 +30,7 @@ void	copystr(char const *s, char c, char **str_arr, size_t i)
 	size_t	k;
 
 	count = 0;
+	j = 0;
 	k = i;
 	while (s[i] != c)
 	{
@@ -56,29 +57,30 @@ char	**ft_split(char const *s, char c)
 	size_t	i;
 
 	i = 0;
-	str_arr = malloc(sizeof(char *) * count_words(s, c));
+	str_arr = malloc(sizeof(char *) * (count_words(s, c) + 1));
 	if (str_arr == NULL)
 		return (NULL);
-	while (i <= count_words(s, c))
+	while (i < count_words(s, c))
 	{
-		str_arr[i] = malloc(1 * sizeof(char));
+		str_arr[i] = malloc(1);
 		if (str_arr[i] == NULL)
 			return (NULL);
-		ft_bzero(str_arr[i], 1);
+		*str_arr[i] = '\0';
 		i++;
 	}
+	str_arr[i] = NULL;
 	i = 0;
 	while (s[i])
 	{
-		if (s[i] != c)
-			copystr(s, c, str_arr, i);
+		if ((s[i] == c) && (s[i + 1] != c) && (s[i + 1]) != '\0')
+			copystr(s, c, str_arr, i + 1);
 		i++;
 	}
 	return (str_arr);
 }
 int	main(void)
 {
-	char *s = "ffhelrrloffhirrrifhorrwfyesrrf";
+	char *s = "ffhelloffhifhowfyesf";
 	char c = 'f';
 
 	int i = 0;
