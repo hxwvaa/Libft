@@ -22,16 +22,19 @@ size_t	count_words(char const *s, char c)
 	}
 	return (count + 1);
 }
+
 void	*allocate(char **str_arr, char const *s, char c)
 {
 	size_t	i;
+	size_t	words;
 
 	i = 0;
-    free(str_arr);
-	str_arr = malloc(sizeof(char *) * (count_words(s, c) + 1));
+	words = count_words(s, c);
+	free(str_arr);
+	str_arr = malloc(sizeof(char *) * words);
 	if (str_arr == NULL)
 		return (NULL);
-	while (i < count_words(s, c))
+	while (i < words)
 	{
 		str_arr[i] = malloc(1);
 		if (str_arr[i] == NULL)
@@ -68,7 +71,7 @@ void	*copystr(char const *s, char c, char **str_arr, size_t i)
 		count++;
 	free(str_arr[count]);
 	str_arr[count] = malloc(sizeof(char) * (k + 1));
-	if (str_arr == NULL)
+	if (str_arr[count] == NULL)
 		return (NULL);
 	while (s[i] != c)
 	{
@@ -85,21 +88,14 @@ char	**ft_split(char const *s, char c)
 	char	**str_arr;
 	size_t	i;
 
-	// i = 0;
-	// str_arr = malloc(sizeof(char *) * (count_words(s, c) + 1));
-	// if (str_arr == NULL)
-	// 	return (NULL);
-	// while (i < count_words(s, c))
-	// {
-	// 	str_arr[i] = malloc(1);
-	// 	if (str_arr[i] == NULL)
-	// 		return (NULL);
-	// 	*str_arr[i] = '\0';
-	// 	i++;
-	// }
-    str_arr = NULL;
-	str_arr = allocate(str_arr, s, c);
 	i = 0;
+	str_arr = NULL;
+	if (s == NULL)
+	{
+		return (NULL);
+	}
+	i = 0;
+	str_arr = allocate(str_arr, s, c);
 	while (s[i])
 	{
 		if ((s[i] == c) && (s[i + 1] != c) && (s[i + 1]) != '\0')
@@ -108,17 +104,18 @@ char	**ft_split(char const *s, char c)
 	}
 	return (str_arr);
 }
-int	main(void)
-{
-	char *s = "ffhellofhifffyesfhowfff";
-	char c = 'f';
+// int	main(void)
+// {
+// 	char const *s = "whiisiiwjuuusuwkkkiisiwwkkslww";
+// 	char c = 'w';
 
-	int i = 0;
-	char **str = ft_split(s, c);
-	while (i <= 3)
-	{
-		printf("%s\n", str[i]);
-		i++;
-	}
-	free(str);
-}
+// 	size_t i = 0;
+// 	char **str = ft_split(s, c);
+// 	while (i < 4)
+// 	{
+// 		printf("%s\n", str[i]);
+//         free(str[i]);
+// 		i++;
+// 	}
+//     free(str);
+// }
