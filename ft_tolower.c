@@ -1,6 +1,6 @@
 #include "libft.h"
 
-int	ft_toupper(int i)
+int	ft_tolower(int i)
 {
 	if (i >= 'a' && i <= 'z')
 		i += 32;

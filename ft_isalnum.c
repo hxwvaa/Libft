@@ -1,6 +1,6 @@
 #include "libft.h"
 
-int	ft_isalpha(int i)
+int	ft_isalnum(int i)
 {
 	if ((i >= 'A' && i <= 'Z') || (i >= 'a' && i <= 'z') || (i >= '0'
 			&& i <= '9'))
