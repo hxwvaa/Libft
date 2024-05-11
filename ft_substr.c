@@ -6,10 +6,10 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	char	*str;
 
 	i = 0;
-	str = malloc(len + 1);
+	str = malloc(sizeof(*s) * (len + 1));
 	if (str == NULL)
 		return (NULL);
-	while (i < len && s[start] != '\0')
+	while (i <= len && s[start] != '\0')
 	{
 		str[i] = s[start];
 		start++;

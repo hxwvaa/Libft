@@ -6,7 +6,10 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	void	*s;
 
 	if (nmemb == 0 || size == 0)
-		return (NULL);
+	{
+		nmemb = 1;
+		size = 1;
+	}
 	s = malloc(nmemb * size);
 	if (s == NULL)
 		return (NULL);

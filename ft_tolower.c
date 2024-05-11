@@ -2,7 +2,7 @@
 
 int	ft_tolower(int i)
 {
-	if (i >= 'a' && i <= 'z')
+	if (i >= 'A' && i <= 'Z')
 		i += 32;
 	return (i);
 }
