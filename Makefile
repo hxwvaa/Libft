@@ -36,6 +36,17 @@ ft_itoa.c\
 ft_split.c\
 
 OBJ = $(SRC:.c=.o)
+SRC_BONUS = ft_lstnew.c \
+			ft_lstsize.c \
+			ft_lstadd_back.c \
+			ft_lstadd_front.c \
+			ft_lstclear.c \
+			ft_lstdelone.c \
+			ft_lstlast.c \
+			ft_lstiter.c \
+			ft_lstmap.c \
+
+BONUS_OBJ = $(SRC_BONUS:.c=.o)
 
 CC = cc
 
@@ -49,6 +60,9 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	@$(AR) $(NAME) $(OBJ)
+
+bonus: $(BONUS_OBJ)
+	@ar -rcs $(NAME) $(BONUS_OBJ)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
