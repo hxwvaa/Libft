@@ -10,17 +10,35 @@ size_t	count_words(char const *s, char c)
 	count = 0;
 	while (s[i])
 	{
-		if ((i == 0 && s[i] == c) || (s[i + 1] == '\0' && s[i] == c)
-			|| (s[i] == c && s[i + 1] == c))
-		{
+		while (s[i] == c)
 			i++;
-			continue ;
-		}
-		if (s[i] == c)
+		if (s[i] && s[i] != c)
 			count++;
-		i++;
+		while (s[i] && s[i] != c)
+			i++;
 	}
-	return (count + 1);
+	return (count);
+}
+
+void	*copystr(char const *s, char c, char *str)
+{
+	size_t	i;
+
+	i = 0;
+	while (s[i] && s[i] != c)
+		i++;
+	str = (char *)ft_calloc((i + 1), sizeof(char));
+	if (!str)
+	{
+		while (i != 0)
+		{
+			free(&str[i]);
+			i--;
+		}
+		return (NULL);
+	}
+	ft_memcpy(str, s, i);
+	return (str);
 }
 
 void	*allocate(char **str_arr, char const *s, char c)
@@ -28,20 +46,22 @@ void	*allocate(char **str_arr, char const *s, char c)
 	size_t	i;
 	size_t	words;
 
-	i = 0;
 	words = count_words(s, c);
 	free(str_arr);
-	str_arr = malloc(sizeof(char *) * words);
-	if (str_arr == NULL)
+	str_arr = (((char **)malloc(sizeof(char *) * (words + 1))));
+	if (!str_arr)
 		return (NULL);
+	i = 0;
 	while (i < words)
 	{
-		str_arr[i] = malloc(1);
-		if (str_arr[i] == NULL)
-			return (NULL);
-		*str_arr[i] = '\0';
+		while (*s == c)
+			s++;
+		str_arr[i] = copystr(s, c, str_arr[i]);
+		while (*s && *s != c)
+			s++;
 		i++;
 	}
+	str_arr[i] = NULL;
 	return (str_arr);
 }
 
@@ -50,7 +70,7 @@ size_t	word_length(char const *s, char c, size_t i)
 	size_t	j;
 
 	j = 0;
-	while (s[i] != c)
+	while (s[i] && s[i] != c)
 	{
 		i++;
 		j++;
@@ -58,64 +78,15 @@ size_t	word_length(char const *s, char c, size_t i)
 	return (j);
 }
 
-void	*copystr(char const *s, char c, char **str_arr, size_t i)
-{
-	size_t	count;
-	size_t	j;
-	size_t	k;
-
-	count = 0;
-	j = 0;
-	k = word_length(s, c, i);
-	while (*str_arr[count] != '\0')
-		count++;
-	free(str_arr[count]);
-	str_arr[count] = malloc(sizeof(char) * (k + 1));
-	if (str_arr[count] == NULL)
-		return (NULL);
-	while (s[i] != c)
-	{
-		str_arr[count][j] = s[i];
-		j++;
-		i++;
-	}
-	str_arr[count][j] = '\0';
-	return (str_arr);
-}
-
 char	**ft_split(char const *s, char c)
 {
 	char	**str_arr;
-	size_t	i;
 
-	i = 0;
-	str_arr = NULL;
+	str_arr = '\0';
 	if (s == NULL)
 	{
 		return (NULL);
 	}
-	i = 0;
 	str_arr = allocate(str_arr, s, c);
-	while (s[i])
-	{
-		if ((s[i] == c) && (s[i + 1] != c) && (s[i + 1]) != '\0')
-			copystr(s, c, str_arr, i + 1);
-		i++;
-	}
 	return (str_arr);
 }
-// int	main(void)
-// {
-// 	char const *s = "whiisiiwjuuusuwkkkiisiwwkkslww";
-// 	char c = 'w';
-
-// 	size_t i = 0;
-// 	char **str = ft_split(s, c);
-// 	while (i < 4)
-// 	{
-// 		printf("%s\n", str[i]);
-//         free(str[i]);
-// 		i++;
-// 	}
-//     free(str);
-// }

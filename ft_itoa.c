@@ -5,9 +5,9 @@ int	count(int n)
 {
 	int	i;
 
-	i = 0;
 	if (n == 0)
 		return (1);
+	i = 0;
 	if (n < 0)
 		i++;
 	while (n != 0)
@@ -20,9 +20,9 @@ int	count(int n)
 
 char	*ft_itoa(int n)
 {
-	unsigned int		len;
-	unsigned int		num;
-	char	*str;
+	unsigned int	len;
+	unsigned int	num;
+	char			*str;
 
 	num = n;
 	len = count(n);
