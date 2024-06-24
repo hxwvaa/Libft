@@ -65,19 +65,6 @@ void	*allocate(char **str_arr, char const *s, char c)
 	return (str_arr);
 }
 
-size_t	word_length(char const *s, char c, size_t i)
-{
-	size_t	j;
-
-	j = 0;
-	while (s[i] && s[i] != c)
-	{
-		i++;
-		j++;
-	}
-	return (j);
-}
-
 char	**ft_split(char const *s, char c)
 {
 	char	**str_arr;
