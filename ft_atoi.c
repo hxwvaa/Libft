@@ -1,29 +1,29 @@
 #include "libft.h"
+#include <stdio.h>
 
 int	ft_atoi(const char *str)
 {
-	int	i;
-	int	sign;
-	int	nb;
+	int				sign;
+	unsigned long	nb;
 
-	i = 0;
 	sign = 1;
 	nb = 0;
-	while (str[i] == 32 || (str[i] >= 9 && str[i] <= 13))
-		i++;
-	if (str[i] == '-')
+	while (*str == ' ' || (*str >= '\t' && *str <= '\r'))
+		str++;
+	if (*str == '-' || *str == '+')
 	{
-		sign = sign * -1;
-		i++;
-		if (str[i] == '-' || str[i] == '+')
-			return (0);
+		if (*str == '-')
+			sign *= -1;
+		str++;
 	}
-	if (str[i] == '+')
-		i++;
-	while (str[i] >= '0' && str[i] <= '9')
+	while (*str >= '0' && *str <= '9')
 	{
-		nb = nb * 10 + (str[i] - '0');
-		i++;
+		nb = nb * 10 + *str - '0';
+		if (sign == -1 && nb >= LLONG_MAX)
+			return (0);
+		if (nb >= LLONG_MAX)
+			return (-1);
+		str++;
 	}
 	return (sign * nb);
 }
