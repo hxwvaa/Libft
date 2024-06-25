@@ -18,12 +18,16 @@ int	count(int n)
 	return (i);
 }
 
+// CHECK FOR SPECIAL CASE
+
 char	*ft_itoa(int n)
 {
 	unsigned int	len;
 	unsigned int	num;
 	char			*str;
 
+	if (n == -2147483648)
+		return ("-2147483648");
 	num = n;
 	len = count(n);
 	str = malloc(sizeof(char) * (len + 1));
@@ -39,9 +43,8 @@ char	*ft_itoa(int n)
 	}
 	while (num != 0)
 	{
-		str[len - 1] = ('0' + (num % 10));
+		str[--len] = ('0' + (num % 10));
 		num = num / 10;
-		len--;
 	}
 	return (str);
 }
