@@ -1,5 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hbasheer <hbasheer@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/26 15:14:49 by hbasheer          #+#    #+#             */
+/*   Updated: 2024/06/26 15:14:49 by hbasheer         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
-#include <stdio.h>
 
 int	count(int n)
 {
@@ -18,8 +29,6 @@ int	count(int n)
 	return (i);
 }
 
-// CHECK FOR SPECIAL CASE
-
 char	*ft_itoa(int n)
 {
 	unsigned int	len;
@@ -27,7 +36,7 @@ char	*ft_itoa(int n)
 	char			*str;
 
 	if (n == -2147483648)
-		return ("-2147483648");
+		return (ft_strdup("-2147483648"));
 	num = n;
 	len = count(n);
 	str = malloc(sizeof(char) * (len + 1));

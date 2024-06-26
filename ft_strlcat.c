@@ -1,6 +1,16 @@
-#include "libft.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hbasheer <hbasheer@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/26 15:16:01 by hbasheer          #+#    #+#             */
+/*   Updated: 2024/06/26 15:16:02 by hbasheer         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-// printf("%zu", ft_strlcat(NULL, "asdfgh", 0));
+#include "libft.h"
 
 size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {

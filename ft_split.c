@@ -1,5 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hbasheer <hbasheer@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/26 15:15:53 by hbasheer          #+#    #+#             */
+/*   Updated: 2024/06/26 15:17:47 by hbasheer         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
-#include <stdio.h>
 
 size_t	count_words(char const *s, char c)
 {
@@ -69,7 +80,7 @@ char	**ft_split(char const *s, char c)
 {
 	char	**str_arr;
 
-	str_arr = '\0';
+	str_arr = NULL;
 	if (s == NULL)
 	{
 		return (NULL);

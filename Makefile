@@ -59,10 +59,10 @@ AR = ar -rcs
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@$(AR) $(NAME) $(OBJ)
+	$(AR) $@ $(OBJ)
 
 bonus: $(BONUS_OBJ)
-	@ar -rcs $(NAME) $(BONUS_OBJ)
+	$(AR) $(NAME) $(BONUS_OBJ)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
