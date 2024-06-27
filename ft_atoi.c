@@ -6,15 +6,15 @@
 /*   By: hbasheer <hbasheer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 15:14:27 by hbasheer          #+#    #+#             */
-/*   Updated: 2024/06/26 15:14:28 by hbasheer         ###   ########.fr       */
+/*   Updated: 2024/06/27 18:53:05 by hbasheer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
-	unsigned long long 	nb;
+	unsigned long long	nb;
 	int					sign;
 
 	sign = 1;
