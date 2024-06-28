@@ -6,7 +6,7 @@
 /*   By: hbasheer <hbasheer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 15:15:53 by hbasheer          #+#    #+#             */
-/*   Updated: 2024/06/26 15:17:47 by hbasheer         ###   ########.fr       */
+/*   Updated: 2024/06/28 11:46:59 by hbasheer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	*copystr(char const *s, char c, char *str)
 	i = 0;
 	while (s[i] && s[i] != c)
 		i++;
-	str = (char *)ft_calloc((i + 1), sizeof(char));
+	str = ft_calloc((i + 1), sizeof(char));
 	if (!str)
 	{
 		while (i != 0)
@@ -59,7 +59,7 @@ void	*allocate(char **str_arr, char const *s, char c)
 
 	words = count_words(s, c);
 	free(str_arr);
-	str_arr = (((char **)malloc(sizeof(char *) * (words + 1))));
+	str_arr = ((malloc(sizeof(char *) * (words + 1))));
 	if (!str_arr)
 		return (NULL);
 	i = 0;
