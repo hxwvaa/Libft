@@ -6,11 +6,24 @@
 /*   By: hbasheer <hbasheer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 15:15:53 by hbasheer          #+#    #+#             */
-/*   Updated: 2024/06/28 11:46:59 by hbasheer         ###   ########.fr       */
+/*   Updated: 2024/06/28 16:54:51 by hbasheer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+void	free_arr(char **str_arr)
+{
+	int	i;
+
+	i = 0;
+	while (str_arr[i] != NULL)
+	{
+		free(str_arr[i]);
+		i++;
+	}
+	free(str_arr);
+}
 
 size_t	count_words(char const *s, char c)
 {
@@ -40,14 +53,7 @@ void	*copystr(char const *s, char c, char *str)
 		i++;
 	str = ft_calloc((i + 1), sizeof(char));
 	if (!str)
-	{
-		while (i != 0)
-		{
-			free(&str[i]);
-			i--;
-		}
 		return (NULL);
-	}
 	ft_memcpy(str, s, i);
 	return (str);
 }
@@ -58,7 +64,6 @@ void	*allocate(char **str_arr, char const *s, char c)
 	size_t	words;
 
 	words = count_words(s, c);
-	free(str_arr);
 	str_arr = ((malloc(sizeof(char *) * (words + 1))));
 	if (!str_arr)
 		return (NULL);
@@ -68,6 +73,11 @@ void	*allocate(char **str_arr, char const *s, char c)
 		while (*s == c)
 			s++;
 		str_arr[i] = copystr(s, c, str_arr[i]);
+		if (!str_arr[i])
+		{
+			free_arr(str_arr);
+			return (NULL);
+		}
 		while (*s && *s != c)
 			s++;
 		i++;
