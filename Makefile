@@ -46,7 +46,7 @@ SRC_BONUS = ft_lstnew.c \
 			ft_lstiter.c \
 			ft_lstmap.c \
 
-BONUS_OBJ = $(SRC_BONUS:.c=.o)
+OBJ_BONUS = $(SRC_BONUS:.c=.o)
 
 CC = cc
 
@@ -61,8 +61,8 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	$(AR) $@ $(OBJ)
 
-bonus: $(BONUS_OBJ)
-	$(AR) $(NAME) $(BONUS_OBJ)
+bonus: $(OBJ) $(OBJ_BONUS)
+	$(AR) $(NAME) $(OBJ) $(OBJ_BONUS)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
@@ -71,8 +71,8 @@ clean:
 	$(DEL) $(OBJ) $(OBJ_BONUS)
 
 fclean: clean
-	$(DEL) $(NAME) $(bonus)
+	$(DEL) $(NAME)
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re bonus
