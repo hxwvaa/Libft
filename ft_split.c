@@ -6,13 +6,13 @@
 /*   By: hbasheer <hbasheer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 15:15:53 by hbasheer          #+#    #+#             */
-/*   Updated: 2024/06/28 16:54:51 by hbasheer         ###   ########.fr       */
+/*   Updated: 2024/06/29 10:59:01 by hbasheer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	free_arr(char **str_arr)
+void	free_array(char **str_arr)
 {
 	int	i;
 
@@ -75,7 +75,7 @@ void	*allocate(char **str_arr, char const *s, char c)
 		str_arr[i] = copystr(s, c, str_arr[i]);
 		if (!str_arr[i])
 		{
-			free_arr(str_arr);
+			free_array(str_arr);
 			return (NULL);
 		}
 		while (*s && *s != c)
